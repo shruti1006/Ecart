@@ -10,7 +10,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Loginpage } from '../pages/loginpage/loginpage';
 
-import { Loginservice } from '../providers/login/loginservice';
+import { Loginservice } from '../providers/loginservice';
 
 
 @NgModule({

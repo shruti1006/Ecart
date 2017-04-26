@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Loginservice } from '../../providers/login/loginservice';
+import { Loginservice } from '../../providers/loginservice';
 
 /**
  * Generated class for the Loginpage page.
@@ -23,7 +23,6 @@ export class Loginpage {
   }
   login(){
   	console.log("inside Login");
-  	//Loginservice.doLogin();
   	this.loginservice.doLogin();
   }
 
