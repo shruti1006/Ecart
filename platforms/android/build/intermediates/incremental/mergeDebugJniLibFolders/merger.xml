@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/snair0/Desktop/POC/ECart/platforms/android/libs"/></dataSet><dataSet config="debug"><source path="/home/snair0/Desktop/POC/ECart/platforms/android/src/debug/jniLibs"/></dataSet></merger>
