@@ -4,20 +4,20 @@
 <ion-content padding class="homeBackground">
 
 	<div text-center>
- 		<img src="../assets/ic_launcher.png"/>
+ 		<img src="../ic_launcher.png"/>
  	</div>
 
 	<ion-list no-lines padding-horizontal>
 			 <ion-item  padding-horizontal class="homeBackground listItem" style="">
 				 <ion-icon name="md-mail" class="loginIcon" item-left></ion-icon>
-			 	 <ion-input class="loginInput" type="text" placeholder="Username"></ion-input>
+			 	 <ion-input [(ngModel)]="user.username" class="loginInput" type="text" placeholder="Username"></ion-input>
 			 </ion-item>
 
 			 
 
 			 <ion-item padding-horizontal class="homeBackground listItem" style="margin-top:10px;">
 		 		<ion-icon name="md-lock" class="loginIcon" item-left></ion-icon>
-			 	 <ion-input class="loginInput" type="password" placeholder="Password"></ion-input>
+			 	 <ion-input [(ngModel)]="user.password" class="loginInput" type="password" placeholder="Password"></ion-input>
 			 </ion-item>
 
 			 <ion-item  class="homeBackground loginleftItem">

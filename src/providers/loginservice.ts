@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http,Headers,RequestOptions} from '@angular/http';
+import { Http,Headers,Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -18,23 +18,22 @@ export class Loginservice {
      
   }
 
-  doLogin(){
- 	 console.log("doLogin");
- 	 	let headers = new Headers({ 'Content-Type': 'application/json' });
-    	let options = new RequestOptions({ headers: headers });
+  doLogin(user){
+  console.log(JSON.stringify(user));
+
+   	 	var url="http://magento2.suyatitech.com/index.php/rest/default/V1/integration/customer/token";
+
+ 	  var creds = {
+ 	  "username":user.username,
+ 	  "password":user.password
+ 	  };
+ 	  var headers = new Headers();
+  	  headers.append('Content-Type', 'application/json');
 
 
- 	 var data ={"username":"snair@suyati.com",password:"123456"};
-  	 var url="http://magento2.suyatitech.com/index.php/rest/default/V1/integration/customer/token";
+	 return this.http.post(url,creds,{headers:headers,method:'POST'}).map((res: Response) => res.json());
 
 
-	 this.http.post(url, data, options)
-        .subscribe(data => {
-        console.log(data.json())
-           
-        }, error => {
-            console.log(JSON.stringify(error.json()));
-        });
   }
 
 }

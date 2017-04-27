@@ -12,6 +12,8 @@ import { Loginpage } from '../pages/loginpage/loginpage';
 
 import { Loginservice } from '../providers/loginservice';
 
+import { LoadingModal } from '../components/loading-modal/loading-modal';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { Loginservice } from '../providers/loginservice';
     StatusBar,
     SplashScreen,
     Loginservice,
+    LoadingModal,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
