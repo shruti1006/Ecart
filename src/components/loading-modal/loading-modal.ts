@@ -35,7 +35,7 @@ export class LoadingModal {
   hideModal()
   {
   	//alert("hide modal");
-  	this.loader.dismiss();
+  	this.loader.dismiss().catch(() => {});
   }
 
 }

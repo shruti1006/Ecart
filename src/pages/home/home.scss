@@ -1,63 +1,41 @@
 page-home {
 
 }
-.homeBackground{
-	background-color: #424242;
+.navheader .toolbar-background{
+	background-color: #424242 !important;
 
 }
 
-.homeBackground .item-inner
-{
+.navheader .toolbar-title{
+	
+	color:white;
 }
-.loginInput
-{
-	color:#939598;
+.menuBtn{
+	color:white !important;
+	box-shadow: none !important;
+    border: none !important;
+    background: none !important;
 }
-.loginIcon{
-	color:#939598;
-}
-.listItem{
-	border:1px #939598 solid !important;
-}
-.loginleftItem
-{
-	width:200px;
-	float:left;
-	color: #939598 !important;
-	padding-left:0 !important;
-}
-.loginrightItem{
-	width:50px;
-	float:right;
-	padding-left:0 !important;
-}
-.loginCheckbox .checkbox-icon{
-	background:none!important;
-	border-color: #94c444;
-}
-.loginCheckbox .checkbox-icon .checkbox-inner{
-	border-color:#94c444 !important;
-}
-.loginBtnContainer
-{
-	padding-left:0 !important;
 
+.homeBtn{
+	box-shadow: none !important;
+    border: none !important;
+    background: none !important;
 }
-.loginBtnContainer .item-inner
-{
-	padding:0 !important;
+
+.homeBtn .button-inner{
+
+	align-items: flex-start;
+    justify-content: flex-start;
+	
 }
-.loginBtnContainer .item-inner .label-md
-{
-	margin-right:2px !important;
-	margin-bottom: 0;
+
+.homeContent{
+	background-color: #939598 !important;
 }
-.loginbtn{
-	height:50px !important;
-	border-color: #94c447 !important;
-	color: #94c447 !important;
-	width:100%;
-}
-.forgotpasswordLabel .label-md{
-	margin-top:0 !important;
-}
+
+$text-input-md-show-success-highlight:      false;
+$text-input-md-show-error-highlight:        false;
+
+
+    

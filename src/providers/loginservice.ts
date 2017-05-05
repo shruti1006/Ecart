@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http,Headers,Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { AppService } from './app-service';
+
+
 /*
   Generated class for the Loginservice provider.
 
@@ -12,7 +15,7 @@ import 'rxjs/add/operator/map';
 export class Loginservice {
 
 
-  constructor(public http: Http) {
+  constructor(public http: Http,public appservice :AppService) {
     console.log('Hello Loginservice Provider');
 
      
@@ -21,7 +24,8 @@ export class Loginservice {
   doLogin(user){
   console.log(JSON.stringify(user));
 
-   	 	var url="http://magento2.suyatitech.com/index.php/rest/default/V1/integration/customer/token";
+   	 	var url=this.appservice.AppUrl+this.appservice.LoginUrl;
+      console.log("Login Url="+url);
 
  	  var creds = {
  	  "username":user.username,

@@ -14,3 +14,42 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.basicBackground .item{
+	color: #939598 !important;
+	background-color: #626262 !important;
+
+	
+}
+.basicBackground{
+	background-color: #424242 !important;
+}
+.textColor{
+	color: white !important;
+}
+.basicBackground .item .item-inner
+{
+	border:none !important;
+}
+
+.navheader .toolbar-background{
+	background-color: #424242 !important;
+
+}
+.navheader .back-button{
+	color:white !important;
+}
+
+.navheader .toolbar-title{
+	
+	color:white;
+}
+.homeContent{
+	background-color: #939598 !important;
+}
+.imgContainer{
+	height:100%;
+	width:70%;
+	margin:0 auto;
+	text-align:center;
+}

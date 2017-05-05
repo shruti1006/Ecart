@@ -1,0 +1,56 @@
+<!--
+  Generated template for the ProductCatalog page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header  class="navheader">
+  <ion-navbar>
+    <button ion-button icon-only class="homeBtn">
+       <img src="assets/img/menuIcon.png" style="width : 30% ; height : 100%">
+    </button>
+   
+    <button ion-button icon-only class="menuBtn" end>
+      <ion-icon name='md-search'></ion-icon>
+    </button>
+    <button ion-button icon-only class="menuBtn" end>
+        <ion-icon name='md-cart'></ion-icon>
+    </button>
+   
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content  class="homeContent">
+<ion-card>
+  <ion-row *ngFor="let product of productArray;let j=index" style="border-bottom: 1px solid #dddddd;">
+ 	 <ng-container *ngIf=" j % 2 == 0">
+		    <ion-col col-50 *ngIf="productArray[j]"  no-padding style="border-right: 1px solid #dddddd;">
+		    		<div *ngFor="let attr of productArray[j].custom_attributes">
+		                   <div style="padding:10px,0;" class="imgContainer" *ngIf="attr.attribute_code == 'thumbnail'">
+		                       <img src="{{imageBaseUrl}}/{{attr.value}}" style="width : 100%;">
+		                   </div>
+
+              		 </div>
+			   			 
+					   	 <div text-center style="padding-bottom:5px;font-size:12px;">{{productArray[j].name}}</div>
+					   	 <div text-center style="padding-bottom:10px;font-size:12px;">Rs {{productArray[j].price}}</div>
+		    </ion-col>
+		   <ion-col col-50 no-padding  *ngIf="productArray[j+1]" style="">
+		  			<div *ngFor="let attr of productArray[j+1].custom_attributes">
+		                   <div  style="padding:10px,0;" class="imgContainer" *ngIf="attr.attribute_code == 'thumbnail'">
+		                       <img src="{{imageBaseUrl}}/{{attr.value}}" style="width : 100%;">
+		                   </div>
+
+              		 </div>
+			   			 
+					   	 <div text-center style="padding-bottom:5px;font-size:12px;">{{productArray[j+1].name}}</div>
+					   	 <div text-center style="padding-bottom:10px;font-size:12px;">Rs {{productArray[j+1].price}}</div>
+		    </ion-col>
+   	 </ng-container>
+  </ion-row>
+  </ion-card>
+  
+
+</ion-content>
