@@ -4,6 +4,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductService } from '../../providers/product-service';
 import { AppService } from '../../providers/app-service';
 import { LoadingModal } from '../../components/loading-modal/loading-modal';
+import { ProductDescription } from '../product-description/product-description';
+
+
 /**
  * Generated class for the ProductCatalog page.
  *
@@ -23,7 +26,6 @@ public imageBaseUrl:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public prdServ: ProductService,public appService:AppService, public loaderService: LoadingModal) {
 
-  		loaderService.showModal();
 
 	  this.imageBaseUrl=appService.ThumbNailUrl
 	  this.currentCatId=navParams.get("catId");
@@ -32,6 +34,13 @@ public imageBaseUrl:string;
 			this.productArray=data.items;
 		
 		});
+  }
+
+  loadDescription(product){
+  var p=product;
+
+  this.navCtrl.push(ProductDescription,{product:p});
+
   }
 
   ionViewDidLoad() {

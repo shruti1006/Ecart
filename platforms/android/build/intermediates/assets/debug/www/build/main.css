@@ -24313,66 +24313,84 @@ ion-navbar.toolbar {
   }
 }
 
-.homeBackground {
-  background-color: #424242;
-}
-
-.loginInput {
-  color: #939598;
-}
-
-.loginIcon {
-  color: #939598;
-}
-
-.listItem {
-  border: 1px #939598 solid !important;
-}
-
-.loginleftItem {
-  width: 200px;
-  float: left;
+.basicBackground .item {
   color: #939598 !important;
-  padding-left: 0 !important;
+  background-color: #626262 !important;
 }
 
-.loginrightItem {
-  width: 50px;
-  float: right;
-  padding-left: 0 !important;
+.basicBackground {
+  background-color: #424242 !important;
 }
 
-.loginCheckbox .checkbox-icon {
-  background: none !important;
-  border-color: #94c444;
+.textColor {
+  color: white !important;
 }
 
-.loginCheckbox .checkbox-icon .checkbox-inner {
-  border-color: #94c444 !important;
+.basicBackground .item .item-inner {
+  border: none !important;
 }
 
-.loginBtnContainer {
-  padding-left: 0 !important;
+.navheader .toolbar-background {
+  background-color: #424242 !important;
 }
 
-.loginBtnContainer .item-inner {
-  padding: 0 !important;
+.navheader .back-button {
+  color: white !important;
 }
 
-.loginBtnContainer .item-inner .label-md {
-  margin-right: 2px !important;
-  margin-bottom: 0;
+.navheader .toolbar-title {
+  color: white;
 }
 
-.loginbtn {
-  height: 50px !important;
+.homeContent {
+  background-color: #939598 !important;
+}
+
+.imgContainer {
+  height: 100%;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.btn {
   border-color: #94c447 !important;
   color: #94c447 !important;
-  width: 100%;
+  border: 1px solid !important;
 }
 
-.forgotpasswordLabel .label-md {
-  margin-top: 0 !important;
+.navheader .toolbar-background {
+  background-color: #424242 !important;
+}
+
+.navheader .toolbar-title {
+  color: white;
+}
+
+.menuBtn {
+  color: white !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: none !important;
+}
+
+.homeBtn {
+  box-shadow: none !important;
+  border: none !important;
+  background: none !important;
+}
+
+.homeBtn .button-inner {
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.homeContent {
+  background-color: #939598 !important;
 }
 
 .homeBackground {

@@ -25,10 +25,32 @@
                         <ion-icon name="arrow-dropdown"></ion-icon>
                     </div>
 
-                   <ion-list  *ngIf="isGroupShown(category)" class="basicBackground" >
-                            <ion-item *ngFor="let subCategory of category.children_data">
-                                {{subCategory.name}}
-                            </ion-item>                             
+                   <ion-list  *ngIf="isGroupShown(category)" class="" >
+                            <ion-item (click)="toggleSubCategory($event,subCategory)" *ngFor="let subCategory of category.children_data">
+                                    <div style="float:left;">
+                                         {{subCategory.name}}
+                                     </div>
+                                      <div style="float:right;" *ngIf="subCategory.children_data.length">
+                                             <ion-icon name="arrow-dropdown"></ion-icon>
+                                      </div>
+
+                                    <ion-list  *ngIf="isSubGroupShown(subCategory)" class="" >
+                                        <ion-item (click)="loadCatalog(sub1.id)" *ngFor="let sub1 of subCategory.children_data">
+                                            {{sub1.name}}
+                                        </ion-item>
+                                        <ion-item  (click)="loadCatalog(subCategory.id)" *ngIf="subCategory.product_count && subCategory.children_data.length">
+                                            View All {{subCategory.name}}
+                                        </ion-item>
+                                       
+                                    </ion-list>  
+                            </ion-item>
+                            <ion-item (click)="loadCatalog(category.id)" *ngIf="category.product_count && category.children_data.length">
+                            View All {{category.name}}
+                            </ion-item>
+                           
+
+  
+ 
                     </ion-list>                    
                 </ion-item>
                

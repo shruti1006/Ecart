@@ -6,6 +6,8 @@ import { LoadingModal } from '../../components/loading-modal/loading-modal';
 import { AppService } from '../../providers/app-service';
 import { PopoverPage } from '../popover-page/popover-page';
 import { ProductCatalog } from '../product-catalog/product-catalog';
+import { ProductDescription } from '../product-description/product-description';
+
 
 
 
@@ -30,6 +32,7 @@ public imageBaseUrl:string;
   
 
   formatCategories(categories){
+
   	var categoryArray=categories.children_data;
   	for(let data of categoryArray) 
   	{
@@ -61,8 +64,11 @@ public imageBaseUrl:string;
 				console.log(this.categoriesArray);
 				this.displayArray=this.categoriesArray;
 				this.loaderservice.hideModal();
+
 			}
 		})
+
+    console.log(this.displayArray);
 		
 	}
 
@@ -79,6 +85,13 @@ public imageBaseUrl:string;
   ionViewDidLoad() {
     this.menu.swipeEnable(true, 'CategoriesMenu');
     
+  }
+
+  loadDescription(product){
+    console.log("inaisde loadDescription");
+    console.log(product);
+    var descProduct=product;
+    this.navCtrl.push(ProductDescription,{product:descProduct});
   }
 
   loadMore(catId){

@@ -12,6 +12,8 @@ import { HomePage } from '../pages/home/home';
 import { Loginpage } from '../pages/loginpage/loginpage';
 import { ProductCatalog } from '../pages/product-catalog/product-catalog';
 import { PopoverPage } from '../pages/popover-page/popover-page';
+import { ProductDescription } from '../pages/product-description/product-description';
+
 
 import { AppService } from '../providers/app-service';
 import { Loginservice } from '../providers/loginservice';
@@ -25,7 +27,8 @@ import { LoadingModal } from '../components/loading-modal/loading-modal';
     HomePage,
     Loginpage,
     ProductCatalog,
-    PopoverPage
+    PopoverPage,
+    ProductDescription
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { LoadingModal } from '../components/loading-modal/loading-modal';
     HomePage,
     Loginpage,
     ProductCatalog,
-    PopoverPage
+    PopoverPage,
+    ProductDescription
   ],
   providers: [
     StatusBar,

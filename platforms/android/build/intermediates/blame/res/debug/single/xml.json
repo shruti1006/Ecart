@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/home/snair0/Desktop/POC/gitbackup/Ecart/platforms/android/build/intermediates/res/merged/debug/xml/config.xml",
+        "source": "/home/snair0/Desktop/POC/gitbackup/Ecart/platforms/android/res/xml/config.xml"
+    },
+    {
         "merged": "/home/snair0/Desktop/POC/ECart/platforms/android/build/intermediates/res/merged/debug/xml/config.xml",
         "source": "/home/snair0/Desktop/POC/ECart/platforms/android/res/xml/config.xml"
     }

@@ -26,9 +26,9 @@
 <ion-card>
   <ion-row *ngFor="let product of productArray;let j=index" style="border-bottom: 1px solid #dddddd;">
  	 <ng-container *ngIf=" j % 2 == 0">
-		    <ion-col col-50 *ngIf="productArray[j]"  no-padding style="border-right: 1px solid #dddddd;">
+		    <ion-col col-50 *ngIf="productArray[j]"  no-padding style="border-right: 1px solid #dddddd;" (click)="loadDescription(productArray[j])">
 		    		<div *ngFor="let attr of productArray[j].custom_attributes">
-		                   <div style="padding:10px,0;" class="imgContainer" *ngIf="attr.attribute_code == 'thumbnail'">
+		                   <div style="padding:10px 0;" class="imgContainer" *ngIf="attr.attribute_code == 'thumbnail'">
 		                       <img src="{{imageBaseUrl}}/{{attr.value}}" style="width : 100%;">
 		                   </div>
 
@@ -37,7 +37,7 @@
 					   	 <div text-center style="padding-bottom:5px;font-size:12px;">{{productArray[j].name}}</div>
 					   	 <div text-center style="padding-bottom:10px;font-size:12px;">Rs {{productArray[j].price}}</div>
 		    </ion-col>
-		   <ion-col col-50 no-padding  *ngIf="productArray[j+1]" style="">
+		   <ion-col col-50 no-padding  *ngIf="productArray[j+1]" style="" (click)="loadDescription(productArray[j+1])">
 		  			<div *ngFor="let attr of productArray[j+1].custom_attributes">
 		                   <div  style="padding:10px,0;" class="imgContainer" *ngIf="attr.attribute_code == 'thumbnail'">
 		                       <img src="{{imageBaseUrl}}/{{attr.value}}" style="width : 100%;">
