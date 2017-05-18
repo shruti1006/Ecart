@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 import { Checkoutpage } from '../checkoutpage/checkoutpage';
 import { Storage } from '@ionic/storage';
 import { CartService } from '../../providers/cart-service';
@@ -26,7 +26,7 @@ public authToken:any;
 public shippingInfo:any={};
 public shpMethod:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,public cartServ: CartService,public loader :LoadingModal) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,public cartServ: CartService,public loader :LoadingModal, public toastCtrl:ToastController) {
 
 
    loader.showModal();
@@ -62,53 +62,64 @@ public shpMethod:any;
   }
 
   gotoPayement(){
-  console.log("this.shpMethod=="+this.shpMethod);
-  console.log("carriercode="+this.shippingMethod[this.shpMethod].carrier_code)
-  console.log("method_code="+this.shippingMethod[this.shpMethod].method_code)
+      
 
-  this.loader.showModal();
-  	var address={
-  		"addressInformation":{
-  			"billing_address":{
-  				"city":this.billingAddress.city,
-  				"company":this.billingAddress.company,
-  				"country_id":this.billingAddress.country_id,
-  				"firstname":this.billingAddress.firstname,
-  				"lastname":this.billingAddress.lastname,
-  				"postcode":this.billingAddress.postcode,
-  				"region":this.billingAddress.region.region,
-  				"region_code":this.billingAddress.region.region_code,
-  				"region_id":this.billingAddress.region.region_id,
-  				"street":this.billingAddress.street,
-  				"telephone":this.billingAddress.telephone
-  			},
-  			"shipping_address":{
-  				"city":this.shippingAddress.city,
-  				"company":this.shippingAddress.company,
-  				"country_id":this.shippingAddress.country_id,
-  				"firstname":this.shippingAddress.firstname,
-  				"lastname":this.shippingAddress.lastname,
-  				"postcode":this.shippingAddress.postcode,
-  				"region":this.shippingAddress.region.region,
-  				"region_code":this.shippingAddress.region.region_code,
-  				"region_id":this.shippingAddress.region.region_id,
-  				"street":this.shippingAddress.street,
-  				"telephone":this.shippingAddress.telephone
-  			},
-  			"shipping_carrier_code":this.shippingMethod[this.shpMethod].carrier_code,
-  			"shipping_method_code":this.shippingMethod[this.shpMethod].method_code
-  		}
-  	}
+      if(this.shpMethod){
+          console.log("this.shpMethod=="+this.shpMethod);
+          console.log("carriercode="+this.shippingMethod[this.shpMethod].carrier_code)
+           console.log("method_code="+this.shippingMethod[this.shpMethod].method_code)
 
-  	 this.cartServ.getShippingInfo(address, this.authToken).subscribe(data=>{
-             console.log(data);
-             this.shippingInfo=data;
-             this.loader.hideModal();
-             this.navCtrl.push(Checkoutpage,{shippingInfo:this.shippingInfo,billingAddress:this.billingAddress});
-            
-       });
+          this.loader.showModal();
+          var address={
+            "addressInformation":{
+              "billing_address":{
+                "city":this.billingAddress.city,
+                "company":this.billingAddress.company,
+                "country_id":this.billingAddress.country_id,
+                "firstname":this.billingAddress.firstname,
+                "lastname":this.billingAddress.lastname,
+                "postcode":this.billingAddress.postcode,
+                "region":this.billingAddress.region.region,
+                "region_code":this.billingAddress.region.region_code,
+                "region_id":this.billingAddress.region.region_id,
+                "street":this.billingAddress.street,
+                "telephone":this.billingAddress.telephone
+              },
+              "shipping_address":{
+                "city":this.shippingAddress.city,
+                "company":this.shippingAddress.company,
+                "country_id":this.shippingAddress.country_id,
+                "firstname":this.shippingAddress.firstname,
+                "lastname":this.shippingAddress.lastname,
+                "postcode":this.shippingAddress.postcode,
+                "region":this.shippingAddress.region.region,
+                "region_code":this.shippingAddress.region.region_code,
+                "region_id":this.shippingAddress.region.region_id,
+                "street":this.shippingAddress.street,
+                "telephone":this.shippingAddress.telephone
+              },
+              "shipping_carrier_code":this.shippingMethod[this.shpMethod].carrier_code,
+              "shipping_method_code":this.shippingMethod[this.shpMethod].method_code
+            }
+          }
 
- 	 
+           this.cartServ.getShippingInfo(address, this.authToken).subscribe(data=>{
+                   console.log(data);
+                   this.shippingInfo=data;
+                   this.loader.hideModal();
+                   this.navCtrl.push(Checkoutpage,{shippingInfo:this.shippingInfo,billingAddress:this.billingAddress});
+                  
+             });
+
+      }	 
+      else
+      {
+          let toast = this.toastCtrl.create({
+                        message: "Please select a shipping method.",
+                        duration: 3000
+                      });
+          toast.present();
+      }
 
   }
 

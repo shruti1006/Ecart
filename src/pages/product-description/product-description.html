@@ -13,11 +13,11 @@
 
     <ion-buttons end>
    
-        <button ion-button icon-only class="menuBtn" end>
+        <button ion-button icon-only class="menuBtn" (click)="gotoSearch()">
           <ion-icon name='md-search'></ion-icon>
         </button>
 
-        <button id="notification-button" ion-button icon-only class="menuBtn" end (click)="loadCart()">
+        <button id="notification-button" ion-button icon-only class="menuBtn"  (click)="loadCart()">
             <ion-icon name='md-cart'>
               <ion-badge *ngIf="cartCount>0" id="notifications-badge" >{{cartCount}}</ion-badge>
             </ion-icon>            

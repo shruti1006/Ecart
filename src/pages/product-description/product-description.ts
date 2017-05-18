@@ -4,7 +4,7 @@ import { AppService } from '../../providers/app-service';
 import { CartService } from '../../providers/cart-service';
 import { Storage } from '@ionic/storage';
 import { Cartpage } from '../cartpage/cartpage';
-
+import { SearchPage } from '../search-page/search-page';
 import { LoadingModal } from '../../components/loading-modal/loading-modal';
 
 
@@ -134,6 +134,11 @@ public cartCount:number;
   }
 
   ionViewDidLoad() {
+  }
+
+  gotoSearch(){
+
+      this.navCtrl.push(SearchPage);
   }
 
 }

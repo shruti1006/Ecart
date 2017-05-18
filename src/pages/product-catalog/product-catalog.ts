@@ -8,6 +8,8 @@ import { ProductDescription } from '../product-description/product-description';
 import { CartService } from '../../providers/cart-service';
 import { Storage } from '@ionic/storage';
 import { Cartpage } from '../cartpage/cartpage';
+import { SearchPage } from '../search-page/search-page';
+
 
 /**
  * Generated class for the ProductCatalog page.
@@ -95,6 +97,11 @@ public cartCount:number;
    loadCart(){
 
     this.navCtrl.push(Cartpage);
+  }
+
+  gotoSearch(){
+
+      this.navCtrl.push(SearchPage);
   }
 
 }

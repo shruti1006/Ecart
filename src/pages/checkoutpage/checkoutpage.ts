@@ -47,56 +47,67 @@ export class Checkoutpage {
 
   gotoPayement()
   {
-  		var data={
-  			"billingAddress":{
-  				"city":this.billAddress.city,
-  				"company":this.billAddress.company,
-  				"country_id":this.billAddress.country_id,
-  				"firstname":this.billAddress.firstname,
-  				"id":this.billAddress.id,
-  				"lastname":this.billAddress.lastname,
-  				"postcode":this.billAddress.postcode,
-  				"region":this.billAddress.region.region,
-  				"region_code":this.billAddress.region.region_code,
-  				"region_id":this.billAddress.region.region_id,
-  				"same_as_billing":0,
-  				"street":this.billAddress.street,
-  				"telephone":this.billAddress.telephone
-  				},
-  			"paymentMethod":{
-  				"method":this.paymentMethods[this.payM].code
-  				}
-			}
-			console.log(data);
+      if(this.payM)
+      {
+          		var data={
+          			"billingAddress":{
+          				"city":this.billAddress.city,
+          				"company":this.billAddress.company,
+          				"country_id":this.billAddress.country_id,
+          				"firstname":this.billAddress.firstname,
+          				"id":this.billAddress.id,
+          				"lastname":this.billAddress.lastname,
+          				"postcode":this.billAddress.postcode,
+          				"region":this.billAddress.region.region,
+          				"region_code":this.billAddress.region.region_code,
+          				"region_id":this.billAddress.region.region_id,
+          				"same_as_billing":0,
+          				"street":this.billAddress.street,
+          				"telephone":this.billAddress.telephone
+          				},
+          			"paymentMethod":{
+          				"method":this.paymentMethods[this.payM].code
+          				}
+        			}
+        			console.log(data);
 
-			 this.storage.get('token').then((val) => {
+        			 this.storage.get('token').then((val) => {
 
-			      var token=val;
-            if(this.netServ.checkConnection())
-            {
-               this.loader.showModal();
-  			       this.cartServ.completeCheckout(token,data).subscribe(data=>{
-  			             console.log(data);
-  			             if(data)
-  			             {
-                      this.loader.hideModal();
-                      setTimeout(()=>{
-                      this.navCtrl.push(CheckoutComplete);
+        			      var token=val;
+                    if(this.netServ.checkConnection())
+                    {
+                       this.loader.showModal();
+          			       this.cartServ.completeCheckout(token,data).subscribe(data=>{
+          			             console.log(data);
+          			             if(data)
+          			             {
+                              this.loader.hideModal();
+                              setTimeout(()=>{
+                              this.navCtrl.push(CheckoutComplete);
 
-                      },100);
-  			             	
-  			             }
-  			           
-  			       },err=>{
-               this.loader.hideModal();
-                this.presentToast(this.serviceErr);
-               });
-            }
-            else
-               this.presentToast(this.netErr);
+                              },100);
+          			             	
+          			             }
+          			           
+          			       },err=>{
+                       this.loader.hideModal();
+                        this.presentToast(this.serviceErr);
+                       });
+                    }
+                    else
+                       this.presentToast(this.netErr);
 
 
-			});
+        			});
+      }
+      else
+      {
+          let toast = this.toastCtrl.create({
+           message: "Please select a payment method.",
+           duration: 3000
+          });
+          toast.present();
+      }
 
   }
 
