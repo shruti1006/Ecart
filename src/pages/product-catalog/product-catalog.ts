@@ -5,7 +5,9 @@ import { ProductService } from '../../providers/product-service';
 import { AppService } from '../../providers/app-service';
 import { LoadingModal } from '../../components/loading-modal/loading-modal';
 import { ProductDescription } from '../product-description/product-description';
-
+import { CartService } from '../../providers/cart-service';
+import { Storage } from '@ionic/storage';
+import { Cartpage } from '../cartpage/cartpage';
 
 /**
  * Generated class for the ProductCatalog page.
@@ -23,17 +25,23 @@ export class ProductCatalog {
 public currentCatId:any;
 public productArray=[];
 public imageBaseUrl:string;
+public pageNumber:number=1;
+public continue:boolean=true;
+public totalCount:number;
+public cartCount:number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public prdServ: ProductService,public appService:AppService, public loaderService: LoadingModal) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public prdServ: ProductService,public appService:AppService, public loaderService: LoadingModal, public cartServ: CartService,public storage: Storage) {
 
+      console.log("inside constructor");
+      storage.get('token').then((val) => {
 
-	  this.imageBaseUrl=appService.ThumbNailUrl
-	  this.currentCatId=navParams.get("catId");
-	  this.prdServ.getProductsforCategory(this.currentCatId).subscribe(data => {
+          var token=val;
+          cartServ.getCartItemCount(token).subscribe(data=>{
+             this.cartCount=data.items_count;
+          });
 
-			this.productArray=data.items;
-		
-		});
+       });
+  	  
   }
 
   loadDescription(product){
@@ -44,6 +52,49 @@ public imageBaseUrl:string;
   }
 
   ionViewDidLoad() {
+      console.log("view did load");
+      this.imageBaseUrl=this.appService.ThumbNailUrl
+      this.currentCatId=this.navParams.get("catId");
+      this.loaderService.showModal();
+      this.prdServ.getProductsforCategory(this.currentCatId,this.pageNumber).subscribe(data => {
+
+        this.productArray=data.items;
+        this.totalCount=data.total_count;
+         this.loaderService.hideModal();      
+      
+      });
+  }
+  doInfinite(event)
+  {
+     console.log("inside doInfinite");
+     this.pageNumber++;
+     console.log("productArray.length="+this.productArray.length+" ,total_count=="+this.totalCount);
+      if(this.productArray.length==this.totalCount)
+      {
+        console.log("inaide if");
+        event.enable(false);
+      }
+      else
+      {
+        this.prdServ.getProductsforCategory(this.currentCatId,this.pageNumber).subscribe(data => {
+
+          for(var i=0;i<data.items.length;i++)
+          {
+            this.productArray.push(data.items[i]);
+          }
+          
+          console.log(this.productArray);                                   
+          event.complete();
+             
+      
+      });
+      }
+     
+  }
+
+   loadCart(){
+
+    this.navCtrl.push(Cartpage);
   }
 
 }

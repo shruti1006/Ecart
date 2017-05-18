@@ -1,0 +1,71 @@
+<!--
+  Generated template for the Cartpage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header  class="navheader">
+  <ion-navbar>
+
+    <button ion-button icon-only class="homeBtn">
+       <img src="assets/img/menuIcon.png" style="width : 30% ; height : 100%">
+    </button>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="homeContent">
+
+<div class="emptyCart" padding *ngIf="cartItems.length==0">
+<img>
+    <h2>Your Cart is empty!</h2>
+    <p>Add items to it now.</p>
+
+    <button ion-button class="" (click)="gotoHome()">SHOP NOW</button>
+
+</div>
+
+
+
+<ion-card class="cardContainer" *ngFor="let item of cartItems;let i=index;">
+
+	  <ion-item item-right class="deleteBtnContainer">
+	  <button ion-button icon-only clear class="deleteButton" (click)="showConfirm(item)" ><ion-icon name='trash'></ion-icon></button>
+	  </ion-item>
+	  <ion-card-content no-padding>
+	  
+		    <div style="float:left;width:30%;" padding-right>
+      			<img src="assets/img/placeholder.png">
+    		</div>
+    		<div>
+    			<h2>{{item.name}}</h2>
+    			<p>₹{{item.price}}</p>
+    			<div>
+	    			<p style="float:left;padding-right: 10px;">Quantity: {{item.qty}} </p>
+  						<ion-segment style="width:70px;height: 30px;">
+						    <ion-segment-button value="minus" class="segmentBtn" (click)="item.qty>1?decQuantity(item,i):''">
+						      -
+						    </ion-segment-button>
+						    <ion-segment-button value="plus" class="segmentBtn" (click)="incQuantity(item,i)">
+						      +
+						    </ion-segment-button>
+					  </ion-segment>
+  				</div>
+    		</div>
+    		
+	  </ion-card-content>
+
+</ion-card>
+
+
+
+
+</ion-content>
+
+<ion-footer  *ngIf="cartItems.length>0" class="navheader" (click)="gotoShipping()">
+  <ion-toolbar>
+   <button class="footerText" ion-button clear full>Checkout</button>
+  </ion-toolbar>
+</ion-footer>
+

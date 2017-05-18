@@ -3,8 +3,8 @@
 
 <ion-content padding class="homeBackground">
 
-	<div text-center>
- 		<img src="assets/img/ic_launcher.png"/>
+	<div text-center style="margin:0 auto;width:40%">
+ 		<img padding-bottom src="assets/img/ic_launcher.png"/>
  	</div>
 
 	<ion-list no-lines padding-horizontal>
@@ -22,7 +22,8 @@
 			 	 <ion-input [(ngModel)]="user.password" class="loginInput" name="password" type="password" placeholder="Password" required></ion-input>
 			 </ion-item>
 		</form>
-
+		
+			<!--
 			 <ion-item  class="homeBackground loginleftItem">
 	 			 <ion-label>Keep me logged in</ion-label>
 			 </ion-item>
@@ -31,6 +32,7 @@
 	 			 
 	 			 <ion-checkbox style="margin-left:30px;" color="" class="loginCheckbox" checked="true"></ion-checkbox>
 			 </ion-item>
+			 -->
 
 			 <ion-item class="homeBackground loginBtnContainer">
 			 	<button  [disabled]="!loginform.form.valid" (click)="login()" ion-button outline block class="loginbtn">Login</button>

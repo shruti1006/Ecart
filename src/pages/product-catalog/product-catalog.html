@@ -9,15 +9,20 @@
     <button ion-button icon-only class="homeBtn">
        <img src="assets/img/menuIcon.png" style="width : 30% ; height : 100%">
     </button>
-   
-    <button ion-button icon-only class="menuBtn" end>
-      <ion-icon name='md-search'></ion-icon>
-    </button>
-    <button ion-button icon-only class="menuBtn" end>
-        <ion-icon name='md-cart'></ion-icon>
-    </button>
-   
 
+    <ion-buttons end>
+   
+        <button ion-button icon-only class="menuBtn">
+          <ion-icon name='md-search'></ion-icon>
+        </button>
+
+        <button id="notification-button" ion-button icon-only class="menuBtn" (click)="loadCart()">
+            <ion-icon name='md-cart'>
+              <ion-badge *ngIf="cartCount>0" id="notifications-badge" >{{cartCount}}</ion-badge>
+            </ion-icon>
+            
+        </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -35,22 +40,26 @@
               		 </div>
 			   			 
 					   	 <div text-center style="padding-bottom:5px;font-size:12px;">{{productArray[j].name}}</div>
-					   	 <div text-center style="padding-bottom:10px;font-size:12px;">Rs {{productArray[j].price}}</div>
+					   	 <div text-center style="padding-bottom:10px;font-size:12px;">₹{{productArray[j].price}}</div>
 		    </ion-col>
 		   <ion-col col-50 no-padding  *ngIf="productArray[j+1]" style="" (click)="loadDescription(productArray[j+1])">
 		  			<div *ngFor="let attr of productArray[j+1].custom_attributes">
-		                   <div  style="padding:10px,0;" class="imgContainer" *ngIf="attr.attribute_code == 'thumbnail'">
+		                   <div  style="padding:10px 0;" class="imgContainer" *ngIf="attr.attribute_code == 'thumbnail'">
 		                       <img src="{{imageBaseUrl}}/{{attr.value}}" style="width : 100%;">
 		                   </div>
 
               		 </div>
 			   			 
 					   	 <div text-center style="padding-bottom:5px;font-size:12px;">{{productArray[j+1].name}}</div>
-					   	 <div text-center style="padding-bottom:10px;font-size:12px;">Rs {{productArray[j+1].price}}</div>
+					   	 <div text-center style="padding-bottom:10px;font-size:12px;">₹{{productArray[j+1].price}}</div>
 		    </ion-col>
    	 </ng-container>
   </ion-row>
-  </ion-card>
+</ion-card>
+
+<ion-infinite-scroll (ionInfinite)="continue?doInfinite($event):''">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
   
 
 </ion-content>

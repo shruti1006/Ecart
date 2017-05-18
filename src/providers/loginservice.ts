@@ -40,4 +40,11 @@ export class Loginservice {
 
   }
 
+  logoutUser(token)
+  {
+      //var url=this.appservice.AppUrl+this.appservice.LogoutUrl;
+     // var headers = new Headers();
+      //headers.append('Content-Type', 'application/json');
+  }
+
 }

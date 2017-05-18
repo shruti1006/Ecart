@@ -24359,6 +24359,73 @@ ion-navbar.toolbar {
   border: 1px solid !important;
 }
 
+.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child {
+  box-shadow: none;
+  border-color: none;
+}
+
+.list-md .item-input.input-has-focus:last-child {
+  box-shadow: none;
+  border-color: none;
+}
+
+#notification-button {
+  position: relative;
+  width: 42px;
+  top: 1px;
+  right: 1px;
+  overflow: visible !important;
+  height: 50px;
+}
+
+#notifications-badge {
+  background-color: red;
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 1px 3px !important;
+}
+
+.footerText {
+  color: white !important;
+}
+
+.deleteButton {
+  position: absolute;
+  color: grey;
+  top: -6px;
+  right: -3px;
+}
+
+.deleteBtnContainer {
+  text-align: center;
+  width: 11%;
+  float: right;
+}
+
+.cardContainer {
+  margin: 0 0 5px 0;
+  width: 100%;
+  padding: 16px;
+}
+
+.segmentBtn {
+  color: #424242 !important;
+  line-height: 28px !important;
+  border: 1px solid #424242 !important;
+  text-align: center;
+  height: 30px !important;
+}
+
+.emptyCart {
+  margin-top: 30%;
+  height: 100%;
+  color: black;
+  text-align: center;
+}
+
 .navheader .toolbar-background {
   background-color: #424242 !important;
 }
@@ -24406,6 +24473,8 @@ ion-navbar.toolbar {
 }
 
 .listItem {
+  height: 40px !important;
+  font-size: inherit !important;
   border: 1px #939598 solid !important;
 }
 

@@ -10,14 +10,20 @@
     <button ion-button icon-only class="homeBtn">
        <img src="assets/img/menuIcon.png" style="width : 30% ; height : 100%">
     </button>
-   
-    <button ion-button icon-only class="menuBtn" end>
-      <ion-icon name='md-search'></ion-icon>
-    </button>
 
-    <button ion-button icon-only class="menuBtn" end>
-        <ion-icon name='md-cart'></ion-icon>
-    </button>
+    <ion-buttons end>
+   
+        <button ion-button icon-only class="menuBtn" end>
+          <ion-icon name='md-search'></ion-icon>
+        </button>
+
+        <button id="notification-button" ion-button icon-only class="menuBtn" end (click)="loadCart()">
+            <ion-icon name='md-cart'>
+              <ion-badge *ngIf="cartCount>0" id="notifications-badge" >{{cartCount}}</ion-badge>
+            </ion-icon>            
+       </button>
+
+    </ion-buttons>
    
   </ion-navbar>
 </ion-header>
@@ -57,10 +63,10 @@
 <ion-footer class="navheader">
   <ion-toolbar>
     <ion-segment>
-    <ion-segment-button class="btn">
+    <ion-segment-button class="btn" (click)=addItem(currentProduct)>
       Add to cart
     </ion-segment-button>
-    <ion-segment-button class="btn">
+    <ion-segment-button class="btn" (click)=buyNow(currentProduct)>
      Buy Now
     </ion-segment-button>
   </ion-segment>

@@ -58,3 +58,38 @@
 	color: #94c447 !important;
 	border: 1px solid !important;
 }
+.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child{
+	
+	box-shadow: none;
+	border-color:none;
+}
+
+.list-md .item-input.input-has-focus:last-child{
+	
+	box-shadow: none;
+	border-color:none;
+}
+
+#notification-button {            
+    position: relative;
+    width: 42px;
+    top:1px;
+    right: 1px;
+    overflow: visible!important;
+    height: 50px;
+}
+
+
+#notifications-badge {
+    background-color: red;
+    position: absolute;
+    top: 2px;
+	right: 1px;
+    border: 1px solid white;
+	border-radius: 10px;
+    padding: 1px 3px !important;
+}
+
+.footerText{
+	color:white !important;
+}

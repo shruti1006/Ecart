@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
-import { NavController,MenuController,PopoverController } from 'ionic-angular';
-
+import { NavController,MenuController,PopoverController,ToastController } from 'ionic-angular';
 import { ProductService } from '../../providers/product-service';
 import { LoadingModal } from '../../components/loading-modal/loading-modal';
 import { AppService } from '../../providers/app-service';
 import { PopoverPage } from '../popover-page/popover-page';
 import { ProductCatalog } from '../product-catalog/product-catalog';
 import { ProductDescription } from '../product-description/product-description';
-
-
+import { Cartpage } from '../cartpage/cartpage';
+import { Loginpage } from '../loginpage/loginpage';
+import { SearchPage } from '../search-page/search-page';
+import { CartService } from '../../providers/cart-service';
+import { Storage } from '@ionic/storage';
+import { NetworkService } from '../../providers/network-service';
 
 
 
@@ -20,12 +23,50 @@ export class HomePage {
 public categoriesArray=[];
 public displayArray=[];
 public imageBaseUrl:string;
+public cartCount:string;
+public netErr: string;
+public serviceErr: string;
 
 
-  constructor(public navCtrl: NavController,public menu: MenuController, public productService: ProductService, public loaderservice: LoadingModal,public appservice : AppService, public popoverCtrl: PopoverController) {
-  		loaderservice.showModal();
-  		this.productService.getCategories().subscribe(data =>this.formatCategories(data));
+  constructor(public navCtrl: NavController,public menu: MenuController, public productService: ProductService, public loaderservice: LoadingModal,public appservice : AppService, public popoverCtrl: PopoverController,public cartServ: CartService,public storage: Storage,public toastCtrl: ToastController,public netServ: NetworkService) {
+  		
+      loaderservice.showModal();
+  		if(this.netServ.checkConnection())
+      {
+        
+        this.productService.getCategories().subscribe(data =>this.formatCategories(data),err =>{
+          loaderservice.hideModal();
+        });
+      }
+      else{
+        loaderservice.hideModal();
+        this.presentToast(this.netErr);
+      }
+
+      
   		this.imageBaseUrl=appservice.ThumbNailUrl;
+      this.netErr=appservice.NetErrorMessage;
+      this.serviceErr=appservice.ServiceErrorMessage;
+
+       storage.get('token').then((val) => {
+
+        var token=val;
+        if(this.netServ.checkConnection())
+        { 
+            cartServ.getCartItemCount(token).subscribe(data=>{
+                console.log(data);
+                this.cartCount=data.items_count;
+           },err => {
+            loaderservice.hideModal();
+           });
+        }
+        else{
+          loaderservice.hideModal();
+          this.presentToast(this.netErr);
+        }
+
+    });
+
 
   }
 
@@ -53,52 +94,82 @@ public imageBaseUrl:string;
 
 	for(let n of this.categoriesArray)
 	{
-		this.productService.getProductsforCategory(n.id).subscribe(data => {
-		console.log("inside map");
+		this.productService.getProductsforCategory(n.id,1).subscribe(data => {
 
 			n.categoryProducts=data.items.slice(0, 4);
-			console.log(n.categoryProducts);
 			i++;
 			if(i== this.categoriesArray.length)
 			{
-				console.log(this.categoriesArray);
 				this.displayArray=this.categoriesArray;
 				this.loaderservice.hideModal();
 
 			}
 		})
 
-    console.log(this.displayArray);
 		
 	}
-
-  }
+}
  
   openPopover(myEvent){
 
-  	let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present({
-      ev: myEvent
-    });
+    	let popover = this.popoverCtrl.create(PopoverPage);
+      popover.present({
+        ev: myEvent
+      });
+
+      popover.onDidDismiss(data => {
+
+          if(data=="logout")
+            this.navCtrl.setRoot(Loginpage);
+      });
   }
   
   ionViewDidLoad() {
+    console.log("inaide home controller view didi load");
     this.menu.swipeEnable(true, 'CategoriesMenu');
     
   }
+  ionViewWillEnter(){
+
+    console.log("view appeared");
+    this.storage.get('token').then((val) => {
+
+        var token=val;
+        this.cartServ.getCartItemCount(token).subscribe(data=>{
+             console.log(data);
+            this.cartCount=data.items_count;
+       });
+
+    });
+  }
 
   loadDescription(product){
-    console.log("inaisde loadDescription");
-    console.log(product);
     var descProduct=product;
     this.navCtrl.push(ProductDescription,{product:descProduct});
   }
 
   loadMore(catId){
-  var category_id=catId;
-
-  		console.log("catId="+catId);
+      var category_id=catId;
   		this.navCtrl.push(ProductCatalog, {catId:category_id});
+  }
+
+  loadCart(){
+
+    this.navCtrl.push(Cartpage);
+  }
+
+  gotoSearch(){
+
+      this.navCtrl.push(SearchPage);
+  }
+
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000
+    });
+    toast.present();
   }
 
 }

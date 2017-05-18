@@ -19,16 +19,15 @@ export class LoadingModal {
   loader: any;
 
   constructor( public loadingCtrl: LoadingController ) {
-    console.log('Hello LoadingModal Component');
     this.text = 'Hello World';
-    this.loader=this.loadingCtrl.create({
-    content: 'Please wait...'
-  	});
+    
   }
 
   showModal()
   {
-  	//alert("test show modal");
+    this.loader=this.loadingCtrl.create({
+    content: 'Please wait...'
+    });
   	this.loader.present();
   }
 

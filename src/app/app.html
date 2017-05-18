@@ -26,7 +26,7 @@
                     </div>
 
                    <ion-list  *ngIf="isGroupShown(category)" class="" >
-                            <ion-item (click)="toggleSubCategory($event,subCategory)" *ngFor="let subCategory of category.children_data">
+                            <ion-item (click)="subCategory.children_data.length?toggleSubCategory($event,subCategory):loadCatalog(subCategory.id)" *ngFor="let subCategory of category.children_data">
                                     <div style="float:left;">
                                          {{subCategory.name}}
                                      </div>
@@ -35,18 +35,18 @@
                                       </div>
 
                                     <ion-list  *ngIf="isSubGroupShown(subCategory)" class="" >
-                                        <ion-item (click)="loadCatalog(sub1.id)" *ngFor="let sub1 of subCategory.children_data">
+                                        <ion-item menuToggle (click)="loadCatalog(sub1.id)" *ngFor="let sub1 of subCategory.children_data">
                                             {{sub1.name}}
                                         </ion-item>
-                                        <ion-item  (click)="loadCatalog(subCategory.id)" *ngIf="subCategory.product_count && subCategory.children_data.length">
+                                       <!--  <ion-item  menuToggle (click)="loadCatalog(subCategory.id)" *ngIf="subCategory.product_count && subCategory.children_data.length">
                                             View All {{subCategory.name}}
-                                        </ion-item>
+                                        </ion-item> -->
                                        
                                     </ion-list>  
                             </ion-item>
-                            <ion-item (click)="loadCatalog(category.id)" *ngIf="category.product_count && category.children_data.length">
+                            <!-- <ion-item menuToggle (click)="loadCatalog(category.id)" *ngIf="category.product_count && category.children_data.length">
                             View All {{category.name}}
-                            </ion-item>
+                            </ion-item> -->
                            
 
   

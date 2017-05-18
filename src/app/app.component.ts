@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform, NavController } from 'ionic-angular';
+import { Component,ViewChild} from '@angular/core';
+import { Platform, NavController,MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -13,17 +13,21 @@ import { ProductCatalog } from '../pages/product-catalog/product-catalog';
   templateUrl: 'app.html'
 })
 export class MyApp {
+@ViewChild('mycontent') nav: NavController
   rootPage:any = Loginpage;
   shownGroup:any = null;
   categories=[];
   showSubgroup:any=null;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, productService: ProductService, public navCtrl: NavController) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, productService: ProductService,public menuCtrl: MenuController) {
     platform.ready().then(() => {
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
-      splashScreen.hide();
+      setTimeout(() => {
+        splashScreen.hide();
+      }, 100);
       productService.getCategories().subscribe(data =>{this.categories=data});
 
     });
@@ -58,7 +62,9 @@ export class MyApp {
   loadCatalog(catId){
       var category_id=catId;
       console.log("catId="+catId);
-      this.navCtrl.push(ProductCatalog, {catId:category_id});
+     // this.productService.test();
+      this.menuCtrl.close();
+      this.nav.push(ProductCatalog, {catId:category_id});
   }
 
 }

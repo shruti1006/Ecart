@@ -9,16 +9,24 @@
     <button ion-button icon-only class="homeBtn">
        <img src="assets/img/menuIcon.png" style="width : 30% ; height : 100%">
     </button>
+
+     <ion-buttons end>
    
-    <button ion-button icon-only class="menuBtn" end>
-      <ion-icon name='md-search'></ion-icon>
-    </button>
-    <button ion-button icon-only class="menuBtn" end>
-        <ion-icon name='md-cart'></ion-icon>
-    </button>
-    <button ion-button icon-only (click)="openPopover($event)" class="menuBtn" end>
-        <ion-icon name='md-more'></ion-icon>
-    </button>
+        <button ion-button icon-only class="menuBtn" (click)="gotoSearch()">
+          <ion-icon name='md-search'></ion-icon>
+        </button>
+
+        <button id="notification-button" ion-button icon-only class="menuBtn"  (click)="loadCart()">
+            <ion-icon name='md-cart'>
+              <ion-badge *ngIf="cartCount>0" id="notifications-badge" >{{cartCount}}</ion-badge>
+            </ion-icon>
+            
+        </button>
+
+        <button ion-button icon-only (click)="openPopover($event)" class="menuBtn" >
+            <ion-icon name='md-more'></ion-icon>
+        </button>
+    </ion-buttons>
     
 
   </ion-navbar>
@@ -48,7 +56,7 @@
 
                    </div>
                   <h4 text-center>{{item.categoryProducts[j].name}}</h4>
-                   <h4 text-center>Rs {{item.categoryProducts[j].price}}</h4>
+                   <h4 text-center>₹{{item.categoryProducts[j].price}}</h4>
               </div>
 
               <div class="col col-50" style="border-bottom: 1px solid #dddddd;" (click)="loadDescription(item.categoryProducts[j+1])">
@@ -59,7 +67,7 @@
 
                      </div>
                    <h4 text-center>{{item.categoryProducts[j+1].name}}</h4>
-                   <h4 text-center>Rs {{item.categoryProducts[j+1].price}}</h4>
+                   <h4 text-center>₹{{item.categoryProducts[j+1].price}}</h4>
                 </div>
          </ng-container>
     </div>

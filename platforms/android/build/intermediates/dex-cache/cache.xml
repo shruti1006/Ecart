@@ -10,14 +10,5 @@
         sha1="ba7218235a1192e7e43a06d3bab97579565f491b">
         <dex dex="/home/snair0/Desktop/POC/gitbackup/Ecart/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-unspecified-debug_55442a98ed1ea4f08cd302c1938aa2cf38bfb5c9.jar" />
     </item>
-    <item
-        is-multidex="false"
-        jar="/home/snair0/Desktop/POC/ECart/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/debug/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ba7218235a1192e7e43a06d3bab97579565f491b">
-        <dex dex="/home/snair0/Desktop/POC/ECart/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-unspecified-debug_3b389f845ba73c73463940b65f45b0842b56a679.jar" />
-    </item>
 
 </items>

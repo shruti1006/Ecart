@@ -1,0 +1,34 @@
+page-cartpage {
+
+}
+.deleteButton{
+	
+	position:absolute;	
+	color: grey;
+    top: -6px;
+    right: -3px;
+}
+.deleteBtnContainer{
+	text-align: center;
+    width: 11%;
+    float: right;
+}
+.cardContainer{
+	margin:0 0 5px 0;
+	width: 100%;
+    padding: 16px;
+}
+.segmentBtn{
+	color: #424242 !important;
+    line-height: 28px !important;
+    border: 1px solid #424242 !important;
+    text-align: center;
+    height: 30px !important;
+}
+.emptyCart{
+    
+    margin-top: 30%;
+    height: 100%;
+    color: black;
+    text-align: center;
+}
